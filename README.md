@@ -13,6 +13,7 @@ This repository provides a helm chart to deploy AWS Datapipeline task-runner ins
 # How-to
 
     git clone satvidh/autoscaled-aws-datapipeline-task-runner
+    cd autoscaled-aws-datapipeline-task-runner
     export S3_LOCATION_FOR_LOGS=<s3_location_for_logs>
 
 *NOTE* Replace <s3_location_for_logs> with a location of the form ```s3://<your_s3_bucket>[/optional_prefix]```
