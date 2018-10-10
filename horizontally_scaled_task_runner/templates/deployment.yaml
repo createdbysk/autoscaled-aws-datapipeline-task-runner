@@ -23,7 +23,7 @@ spec:
         args:
         - --workerGroup={{ .Values.WORKER_GROUP }}
         - --region=us-west-2
-        - --logUri=s3://satish-experiments/datapipeline-logs
+        - --logUri={{ .Values.LOG_URI }}
         - --output /opt/taskrunner-output
         env:
         - name: AWS_ACCESS_KEY_ID

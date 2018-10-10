@@ -14,7 +14,13 @@ What it says.
     brew cask install minikube
 
 # Run in kubernetes
-    helm install horizontally_scaled_task_runner --set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY,AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN,WORKER_GROUP=scaled-task-runner --debug
+    export S3_LOCATION_FOR_LOGS=<s3_location_for_logs>
+
+*NOTE* Replace <s3_location_for_logs> with a location of the form ```s3://<your_s3_bucket>[/optional_prefix]```
+
+
+    helm install horizontally_scaled_task_runner --set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY,AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN,WORKER_GROUP=scaled-task-runner,LOG_URI=${S3_LOCATION_FOR_LOGS}/datapipeline-logs --debug
+
 
 # Minikube
 
