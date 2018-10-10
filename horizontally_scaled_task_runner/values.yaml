@@ -1,0 +1,18 @@
+service:
+  name: aws-datapipeline-task-runner
+image:
+  repository: apsops/aws-datapipeline-task-runner
+  tag: latest
+  pullPolicy: IfNotPresent
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetAverageUtilization: 50
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi

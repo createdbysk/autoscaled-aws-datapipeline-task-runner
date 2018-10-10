@@ -1,0 +1,3 @@
+RapidMiner Server deployment
+============================
+Release: {{ .Release.Name }}

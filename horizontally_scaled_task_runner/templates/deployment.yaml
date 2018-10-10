@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    service: {{ .Values.service.name }}
+  name: {{ .Values.service.name }}
+spec:
+  selector:
+    matchLabels:
+      service: {{ .Values.service.name }}
+  replicas: {{ .Values.autoscaling.minReplicas }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: {{ .Values.service.name }}
+    spec:
+      containers:
+      - name: {{ .Values.service.name }}
+        args:
+        - --workerGroup={{ .Values.WORKER_GROUP }}
+        - --region=us-west-2
+        - --logUri=s3://satish-experiments/datapipeline-logs
+        - --output /opt/taskrunner-output
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          value: {{ .Values.AWS_ACCESS_KEY_ID }}
+        - name: AWS_SECRET_ACCESS_KEY
+          value: {{ .Values.AWS_SECRET_ACCESS_KEY }}
+        - name: AWS_SESSION_TOKEN
+          value: {{ .Values.AWS_SESSION_TOKEN }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          requests:
+            memory: {{ .Values.resources.requests.memory }}
+            cpu: {{ .Values.resources.requests.cpu }}
+          limits:
+            memory: {{ .Values.resources.limits.memory }}
+            cpu: {{ .Values.resources.limits.cpu }}
+      restartPolicy: Always
+status: {}
