@@ -1,19 +1,18 @@
-# horizontally-scale-data-pipelines
-What it says.
+# autoscaled-aws-datapipeline-task-runner
+This repository provides a helm chart to deploy AWS Datapipeline task-runner instances on Kubernetes that autoscale based on configured utilization.
 
-# Ideas to try
-## Change replicas to 0 rather than an entire helm install
-* Deploy with an initial number of replicas equal to 0.
-* When the workflow starts, raise the number to 1.
-* When the workflow terminates, reduce the number to 0.
 
-# Install helm
-# Mac OSx
+# Pre-requisites
+## Install helm
+#### Mac OSx
 
     brew install kubernetes-helm
     brew cask install minikube
 
-# Run in kubernetes
+
+# How-to
+
+    git clone satvidh/autoscaled-aws-datapipeline-task-runner
     export S3_LOCATION_FOR_LOGS=<s3_location_for_logs>
 
 *NOTE* Replace <s3_location_for_logs> with a location of the form ```s3://<your_s3_bucket>[/optional_prefix]```
@@ -22,7 +21,7 @@ What it says.
     helm install horizontally_scaled_task_runner --set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY,AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN,WORKER_GROUP=scaled-task-runner,LOG_URI=${S3_LOCATION_FOR_LOGS}/datapipeline-logs --debug
 
 
-# Minikube
+# Minikube for local development
 This is a one time setup step.
 
 * If minikube is already running, then
