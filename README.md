@@ -23,6 +23,13 @@ What it says.
 
 
 # Minikube
+This is a one time setup step.
+
+* If minikube is already running, then
+
+      minikube stop
+
+* Setup minikube for larger capacity and to enable the metrics-server to allow kubernetes to horizontally scale.
 
       minikube config set cpus 4
       minikube config set memory 8192
