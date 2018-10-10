@@ -4,7 +4,7 @@ This repository provides a helm chart to deploy AWS Datapipeline task-runner ins
 
 # Pre-requisites
 ## Install helm
-#### Mac OSx
+#### Mac OSX
 
     brew install kubernetes-helm
     brew cask install minikube
